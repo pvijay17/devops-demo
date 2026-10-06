@@ -15,6 +15,12 @@ pipeline {
             }
         }
 
+        stage('Test') {
+            steps {
+                sh './mvnw test'
+            }
+        }
+
         stage('Docker Build') {
             steps {
                 sh 'docker build -t devops-demo:1.0 .'
@@ -24,7 +30,7 @@ pipeline {
 
     post {
         success {
-            echo 'Build and Docker image creation successful!'
+            echo 'CI + Docker pipeline completed successfully!'
         }
 
         failure {
